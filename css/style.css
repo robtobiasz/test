@@ -1,0 +1,267 @@
+@font-face {
+  font-family: 'RobotoR';
+  src: url(../fonts/Roboto-Regular.ttf);
+}
+@font-face {
+  font-family: 'RobotoCR';
+  src: url(../fonts/RobotoCondensed-Regular.ttf);
+}
+@font-face {
+  font-family: 'RobotoCB';
+  src: url(../fonts/RobotoCondensed-Bold.ttf);
+}
+@font-face {
+  font-family: 'RobotoT';
+  src: url(../fonts/Roboto-Thin.ttf);
+}
+
+body{
+  font-family: 'RobotoR', sans-serif;
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  background-color: #dedede;
+  color: #555;
+  cursor: context-menu;
+  position: absolute;
+  font-size: 14px;
+}
+
+#page{
+  width: 100%;
+  height: 100%;
+  background-color: rgb(233,233,233);
+  display: table;
+}
+
+#page_sidebar{
+  width: 20%;
+  height: 100%;
+  background-color: rgb(52, 60, 68);
+  color: rgb(251,251,251);
+  display: inline-table;
+  margin: 0px;
+}
+
+#page_sidebar > div{
+  padding: 8px 20px;
+  font-size: 16px;
+}
+
+#page_sidebar i{
+  font-size: 22px;
+  padding-right: 10px;
+}
+
+#page_sidebar input{
+  background-color: transparent;
+  box-shadow:none;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 2px solid rgb(120,126,133);
+  color: rgb(251,251,251);
+}
+
+#page_navigation{
+  background-color: rgb(32,34,42);
+  color: rgb(251,251,251);
+  padding: 20px !important;
+  font-size: 18px !important;
+}
+
+#page_navbar{
+  font-size: 18px;
+  position: relative;
+  background-color: rgb(255,255,255);
+}
+
+#page_navbar >div{
+  padding: 20px 40px;
+  display: inline-table;
+}
+
+#page_navbar #logo{
+  padding: 20px 20px 20px 40px;
+}
+
+#page_navbar #user>div:first-child{
+  font-size: 22px;
+  font-family: 'RobotoCB', sans-serif !important;
+  margin-top: -8px;
+}
+
+#page_navbar #user i{
+  padding-left: 10px;
+}
+
+#page_navbar #user>div:last-child{
+  font-size: 13px;
+  font-family: 'RobotoR', sans-serif !important;
+  margin-top: -10px;
+}
+
+.search_bar {
+  position: relative;
+}
+
+.search_bar input {
+  padding-left: 0px;
+  padding-bottom: 10px;
+}
+
+.search_bar i{
+  position: absolute;
+  right: 20px;
+  top: 16px;
+  font-size: 20px;
+}
+
+#page_navbar #logo {
+  background: linear-gradient(to bottom right, rgb(8, 85, 158) 40%, rgb(0,132,235) 80% );
+  color: rgb(251,251,251);
+}
+
+#page_navbar #logo :first-child{
+  border-top: 1px solid rgba(182, 182, 182, 0.5);
+  padding-top: 4px;
+  padding-right: 32px;
+  margin-right: -32px;
+  font-weight: 600;
+}
+
+#page_navbar #logo :last-child{
+  border-bottom: 1px solid rgba(182, 182, 182, 0.5);
+  padding-bottom: 4px;
+  padding-right: 50px;
+  font-family: 'RobotoT', sans-serif !important;
+}
+
+#page_navbar #user{
+  right: 120px;
+  position: absolute;
+}
+
+#page_navbar #logout{
+  right: 0px;
+  position: absolute;
+  background-color: rgb(241,241,241);
+}
+
+#page_content{
+  width: 80%;
+  display: inline-table;
+  margin: 0px;
+  position: relative;
+}
+
+#page_view{
+  height: 100%;
+  position: relative;
+  padding: 20px;
+}
+
+.activeMenu{
+  background-color: rgb(34,41,51);
+  border-left: 10px solid rgb(236,89,0);
+  padding-left: 10px !important;
+}
+
+.light_btn{
+  background-color: rgb(11,119,198);
+  color: rgb(251,251,251);
+}
+
+.dark_btn{
+  background-color: rgb(14,75,121);
+  color: rgb(251,251,251);
+}
+
+.black_btn{
+  background-color: rgb(53,59,69);
+  color: rgb(251,251,251);
+}
+
+.link{
+  cursor: pointer;
+}
+
+#page_view input, #page_view .btn, #page_view select {
+  border-radius:0px;
+}
+
+#page_view th {
+  background-color: rgb(186,186,186);
+  font-size: 14px;
+  width: 22.5%;
+}
+
+#main_page td:last-child {
+  font-weight: bold;
+}
+
+#main_page select{
+  -webkit-appearance: none;
+}
+
+#main_page .label{
+  position: relative;
+}
+
+#main_page .label:after{
+  content:'>';
+  font:20px "Consolas", monospace;
+  -webkit-transform:rotate(90deg);
+  -moz-transform:rotate(90deg);
+  -ms-transform:rotate(90deg);
+  transform:rotate(90deg);
+  right:28px; top:2px;
+  padding:0px 10px 10px 10px;
+  border-bottom:1px solid rgb(223, 223, 223);
+  position:absolute;
+  pointer-events:none;
+}
+
+#main_page .table{
+  width: 90%;
+  margin-top: 20px;
+}
+
+#details td:first-child{
+  width: 120px;
+}
+
+#details .constant-row td{
+  height:  50px;
+}
+
+.btn-right{
+  text-align: right;
+}
+
+.btn-right .btn{
+  width: 100px;
+}
+
+.btn-add{
+  background-color: transparent;
+  font-family: 'RobotoCR', sans-serif !important;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 8px 30px;
+}
+
+form, #step3>div:nth-child(2) {
+  padding-top: 20px;
+}
+
+.custom_datepicker{
+  position: absolute;
+  top: 10px;
+  right: 31%;
+  z-index: 3;
+}
+
+.toast-success{
+  opacity: 1 !important;
+  background-color: rgb(121,210,127)!important;
+  margin-top: 66px !important;
+}

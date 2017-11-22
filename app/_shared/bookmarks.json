@@ -1,0 +1,32 @@
+[
+    {
+      "module": "my_account",
+      "text": "My Account",
+      "folder": "my_account"
+    },
+    {
+      "module": "dashboard",
+      "text": "Dashboard",
+      "folder": "dashboard"
+    },
+    {
+      "module": "transactions",
+      "text": "Transactions",
+      "folder": "transactions"
+    },
+    {
+      "module": "incoming_operations",
+      "text": "Incoming Operations",
+      "folder": "incoming_operations"
+    },
+    {
+      "module": "reset_password",
+      "text": "Reset Password",
+      "folder": "reset_password"
+    },
+    {
+      "module": "income",
+      "text": "Income",
+      "folder": "income"
+    }
+]

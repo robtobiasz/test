@@ -1,0 +1,268 @@
+<div ng-show="active_page == 'main'" id="main_page">
+  <div class="row">
+    <div class="col-12">
+      <h4>Loans</h4>
+      <p>The user should be able to filters the loans with respective button.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 label">
+        <select class="form-control" ng-options="item as item.label for item in loan_types track by item.id" ng-model="selected_loan_type"></select>
+    </div>
+    <div class="col-3">
+      <input type="text" class="form-control" placeholder="Enter Fiscal Code">
+    </div>
+    <div class="col-2">
+      <button type="button" class="form-control btn light_btn" ng-click="filterResult()">Filter Results</button>
+    </div>
+    <div class="col-2">
+      <button type="button" class="form-control btn dark_btn" ng-click="goStep1()">Request Loan</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-striped">
+        <tr>
+          <th>Customer</th>
+          <th>Loan Type</th>
+          <th>Total Amount</th>
+          <th>Rates</th>
+          <th>Details</th>
+        </tr>
+        <tr ng-repeat="row in loan_table | filter : filter_loan_type">
+          <td>{{row.customer.name}}</td>
+          <td>{{row.loan_type}}</td>
+          <td>{{row.total_amount}}</td>
+          <td>{{row.rates}}</td>
+          <td class="link" ng-click="openDetailsPage(row.id)"><i class="fa fa-sign-in"></i> show</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div ng-show="active_page == 'details'" id="details">
+  <div class="row">
+    <div class="col-12">
+      <h4>Details</h4>
+      <p>User is able to download/add/or remove an attachment and change the total amount and rates number.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h6>Loan details</h6>
+      <hr>
+      <table class="table table-sm constant-row">
+        <tr>
+          <td>Loan type:</td>
+          <td>{{loan_table[active_loan].loan_type}}</td>
+        </tr>
+        <tr>
+          <td>Total amount:</td>
+          <td><input type="text" class="form-control col-8" ng-model="details_total" > </td>
+        </tr>
+        <tr>
+          <td>Rates:</td>
+          <td><input type="text" class="form-control col-8" ng-model="details_rates" > </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-6">
+      <h6>Attachments</h6>
+      <hr>
+      <table class="table table-sm">
+        <tr>
+          <td>file_1.pdf</td>
+          <td><i class=" btn black_btn fa fa-trash"></i>
+          <i class=" btn light_btn fa fa-cloud-download"></i></td>
+        </tr>
+        <tr>
+          <td>file_2.pdf</td>
+          <td><i class=" btn black_btn fa fa-trash"></i>
+          <i class=" btn light_btn fa fa-cloud-download"></i></td>
+        </tr>
+        <tr>
+          <td>file_3.pdf</td>
+          <td><i class=" btn black_btn fa fa-trash"></i>
+          <i class=" btn light_btn fa fa-cloud-download"></i></td>
+        </tr>
+      </table>
+      <button type="button" class="btn btn-add" name="button">Add an attachment</button>
+    </div>
+    <div class="col-6">
+      <h6>Customer details</h6>
+      <hr>
+      <table class="table table-sm">
+        <tr>
+          <td>Name</td>
+          <td>{{active_loan.customer.name}}</td>
+        </tr>
+        <tr>
+          <td>Fiscal Code</td>
+          <td>{{active_loan.customer.fiscal_code}}</td>
+        </tr>
+        <tr>
+          <td>Date of birth:</td>
+          <td>{{active_loan.customer.date_of_birth}}</td>
+        </tr>
+        <tr>
+          <td>Address:</td>
+          <td>{{active_loan.customer.address}}</td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td>{{active_loan.customer.phone}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-12 btn-right">
+      <hr>
+      <button type="button" class="btn light_btn" ng-click="saveDetails()">Save</button>
+    </div>
+  </div>
+</div>
+<div ng-show="active_page == 'step1'" id="step1">
+  <div class="row">
+    <div class="col-12">
+      <h4>Step One</h4>
+      <p>Predefined values, only numbers in total amount, digits only in rates, next redirects to step two.</p>
+    </div>
+  </div>
+  <form name="myForm" ng-submit="goStep2()">
+    <div class="row">
+      <div class="col-6">
+        <table class="table table-sm">
+          <tr>
+            <td>Loan type:</td>
+            <td>
+              <select class="form-control col-9" ng-options="item as item.label for item in loan_types track by item.id" ng-model="loan_type" data-toggle="tooltip" data-placement="right" title="Required."></select>
+            </td>
+          </tr>
+          <tr>
+            <td>Total amount:</td>
+            <td><input type="text" required pattern="[0-9]+(\.\d\d|)" class="form-control col-9" ng-model="new_loan.total_amount" data-toggle="tooltip" data-placement="right" title="Only numbers e.g. 1200.00, 1200" > </td>
+          </tr>
+          <tr>
+            <td>Rates:</td>
+            <td><input type="text" required pattern="[0-9]+" class="form-control col-9" ng-model="new_loan.rates" data-toggle="tooltip" data-placement="right" title="Only digits" > </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-12 btn-right">
+        <hr>
+        <input type="submit" class="btn light_btn" value="Next"/>
+      </div>
+    </div>
+  </form>
+</div>
+<div ng-show="active_page == 'step2'" id="step2">
+  <div class="row">
+    <div class="col-12">
+      <h4>Step Two</h4>
+      <p>Required fields, datepicker, valid format for fiscal code.</p>
+    </div>
+  </div>
+  <form name="myForm" ng-submit="goStep3()">
+    <div class="row">
+
+      <div class="col-6">
+        <table class="table table-sm">
+          <tr>
+            <td>Name:</td>
+            <td><input type="text" required class="form-control col-9" ng-model="customer_name" > </td>
+          </tr>
+          <tr>
+            <td>Surname</td>
+            <td><input type="text" required class="form-control col-9" ng-model="customer_surname"> </td>
+          </tr>
+          <tr>
+            <td>Fiscal Code:</td>
+            <td><input type="text" required pattern="(\d|\w){3}-(\d|\w){3}-(\d|\w){2}-(\d|\w){2}" class="form-control col-9" ng-model="new_loan.customer.fiscal_code" data-toggle="tooltip" data-placement="right" title="xxx-xxx-xx-xx (where x is an alphanumeric character)"> </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-6">
+        <table class="table table-sm">
+          <tr>
+            <td>Date of Birth:</td>
+            <td><input type="text" required id="datepicker" pattern="(\d){2}-(\d){2}-(\d){4}" class="form-control col-9" data-toggle="tooltip" data-placement="left" title="dd-mm-yyyy"> </td>
+          </tr>
+          <tr>
+            <td>Address</td>
+            <td><input type="text" required class="form-control col-9" ng-model="new_loan.customer.address" > </td>
+          </tr>
+          <tr>
+            <td>Phone</td>
+            <td><input type="text" required class="form-control col-9" ng-model="new_loan.customer.phone" > </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-12 btn-right">
+        <hr>
+        <input type="submit" class="btn light_btn" value="Next"/>
+      </div>
+    </div>
+  </form>
+</div>
+<div ng-show="active_page == 'step3'" id="step3">
+  <div class="row">
+    <div class="col-12">
+      <h4>Step Three</h4>
+      <p>User is able to download/add/or remove an attachment and change the total amount and rates number.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h6>Customer details</h6>
+      <hr>
+      <table class="table table-sm">
+        <tr>
+          <td>Name</td>
+          <td>{{new_loan.customer.name}}</td>
+        </tr>
+        <tr>
+          <td>Fiscal Code</td>
+          <td>{{new_loan.customer.fiscal_code}}</td>
+        </tr>
+        <tr>
+          <td>Date of birth:</td>
+          <td>{{new_loan.customer.date_of_birth}}</td>
+        </tr>
+        <tr>
+          <td>Address:</td>
+          <td>{{new_loan.customer.address}}</td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td>{{new_loan.customer.phone}}</td>
+        </tr>
+        <tr>
+          <td>Loan type:</td>
+          <td>{{new_loan.loan_type}}</td>
+        </tr>
+        <tr>
+          <td>Total amount:</td>
+          <td>{{new_loan.total_amount}}</td>
+        </tr>
+        <tr>
+          <td>Rates:</td>
+          <td>{{new_loan.rates}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-6">
+      <h6>Attachments</h6>
+      <hr>
+      <table class="table table-sm">
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      <button type="button" class="btn btn-add" name="button">Add an attachment</button>
+    </div>
+    <div class="col-12 btn-right">
+      <hr>
+      <button type="button" class="btn light_btn" ng-click="saveNewLoan()">Proceed</button>
+    </div>
+  </div>
+</div>
